@@ -12,13 +12,25 @@ const SingleColor = ({ rgb, weight, index, hexColor }) => {
 	// console.log(stringRgb)
 	// console.log(rgb)
 
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			setAlert(false)
+		}, 2000)
+		return () => clearTimeout(timeout)
+	}, [alert])
+
 	return (
 		<article
+			onClick={() => {
+				setAlert(true)
+				navigator.clipboard.writeText(hexValue)
+			}}
 			className={`color ${index > 10 && 'color-light'}`}
 			style={{ backgroundColor: `rgb(${stringRgb})` }}
 		>
 			<p className='percent-value'>{weight}%</p>
 			<p className='color-value'>{hex}</p>
+			{alert && <p>copied to the clipboard</p>}
 		</article>
 	)
 }

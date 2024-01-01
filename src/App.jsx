@@ -13,13 +13,12 @@ function App() {
 		try {
 			let colors = new Values(color).all(10)
 			setList(colors)
-      setError(false)
+			setError(false)
 			// console.log(colors)
 		} catch (error) {
 			setError(true)
 			// console.log(error)
 		}
-    
 	}
 
 	return (
@@ -41,11 +40,20 @@ function App() {
 					</button>
 				</form>
 			</section>
-			<section className='colors'>			
-					{list.map((color, index) => {
-						{/* console.log(color) */}
-						return <SingleColor key={index} {...color} hexColor={color.hex} index={index} />
-					})}
+			<section className='colors'>
+				{list.map((color, index) => {
+					{
+						/* console.log(color) */
+					}
+					return (
+						<SingleColor
+							key={index}
+							{...color}
+							hexColor={color.hex}
+							index={index}
+						/>
+					)
+				})}
 			</section>
 		</>
 	)
