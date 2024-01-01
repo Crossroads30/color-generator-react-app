@@ -1,13 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import rgbToHex from './utils'
 
-const SingleColor = ({}) => {
+const SingleColor = ({rgb, weight, index}) => {
+  const [alert, setAlert] = useState(false)
+
+  const stringRgb = rgb.join(',')
+  const hex = rgbToHex(...rgb)
+  // console.log(stringRgb)
+  // console.log(rgb)
+  
   return (
-		<>
-			{list.map((color, index) => {
-				return <div key={index} className='color'></div>
-			})}
-		</>
+		<article
+			className={`color`}
+			style={{ backgroundColor: `rgb(${stringRgb})` }}
+		>
+			<p className='percent-value'>{weight}%</p>
+			<p className='color-value'>{hex}</p>
+		</article>
 	)
 }
 
