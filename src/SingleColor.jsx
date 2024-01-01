@@ -7,7 +7,8 @@ const SingleColor = ({ rgb, weight, index, hexColor }) => {
 	const stringRgb = rgb.join(',')
 	const hex = rgbToHex(...rgb) // we can add hex numbers with 'rgbToHex' function
 
-	// console.log(hexColor)// we can add hex numbers without a 'rgbToHex' function just passing hexColor prop to '<p className='color-value'>'
+	const hexValue = `#${hexColor}` // we can add hex numbers without a 'rgbToHex' function just passing hexColor prop to '<p className='color-value'>'
+
 	// console.log(stringRgb)
 	// console.log(rgb)
 
