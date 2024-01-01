@@ -1,17 +1,34 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SingleColor from './SingleColor'
 
 import Values from 'values.js'
 
+const percentList = []
+
+for (let i = 1; i <= 20; i++) {
+	// console.log(i)
+	percentList.push(i)
+}
+// console.log(percentList)
+
 function App() {
 	const [color, setColor] = useState('')
-	const [list, setList] = useState([])
+	const [percent, setPercent] = useState(10)
+	const [list, setList] = useState(new Values('#f15025').all(percent))
 	const [error, setError] = useState(false)
+
+	console.log(percent)
+
+useEffect(()=> {
+	setPercent(percent)
+}, [percent])
+
 
 	const handleSubmit = e => {
 		e.preventDefault()
 		try {
-			let colors = new Values(color).all(10)
+			setPercent(percent)
+			let colors = new Values(color).all(percent)
 			setList(colors)
 			setError(false)
 			// console.log(colors)
@@ -20,6 +37,7 @@ function App() {
 			// console.log(error)
 		}
 	}
+
 
 	return (
 		<>
@@ -35,6 +53,19 @@ function App() {
 						placeholder='#f15025'
 						className={`${error ? 'error' : null}`}
 					/>
+					<div className='percent-block'>
+						<label htmlFor='percentList'> %</label>
+						<select
+							name='percentList'
+							id='percentList'
+							value={percent}
+							onChange={(e) => setPercent(Number(e.target.value))}
+						>
+							{percentList.map(percentValue => {
+								return <option key={percentValue}>{percentValue}</option>
+							})}
+						</select>
+					</div>
 					<button className='btn' type='submit'>
 						generate
 					</button>
