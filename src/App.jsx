@@ -10,7 +10,6 @@ function App() {
 
 	const handleSubmit = e => {
 		e.preventDefault()
-		console.log('hello')
 		try {
 			let colors = new Values(color).all(10)
 			setList(colors)
@@ -42,8 +41,8 @@ function App() {
 			</section>
 			<section className='colors'>			
 					{list.map((color, index) => {
-						console.log(color)
-						return <SingleColor key={index} {...color} index={index} />
+						{/* console.log(color) */}
+						return <SingleColor key={index} {...color} hexColor={color.hex} index={index} />
 					})}
 			</section>
 		</>
